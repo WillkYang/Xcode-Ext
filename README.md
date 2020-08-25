@@ -8,6 +8,7 @@
 ###### 二、编写代码
 
 1、新建项目，然后新建一个Target，类型选择Xcode Source Editor Extension，完成之后设置target的签名和项目的签名一致。
+
 ![在New中选择Target](http://upload-images.jianshu.io/upload_images/459563-6bad7552f26e7442.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -19,12 +20,12 @@
  ```
 - (void)performCommandWithInvocation:(XCSourceEditorCommandInvocation *)invocation completionHandler:(void (^)(NSError * _Nullable nilOrError))completionHandler
 ```
-用户调用我们的插件时，系统会回调这个方法，
-######XCSourceEditorCommandInvocation
+用户调用我们的插件时，系统会回调这个方法
+###### XCSourceEditorCommandInvocation
 >Information about the source editor command that the user invoked, such as the identifier of the command, the text buffer on which the command is to operate, and whether the command has been canceled by Xcode or the user.
 
 其中invocation.buffer是编辑器的全部文本
-```
+```objc
 /** 当前编辑器的全部文件内容 */
 @property (readonly, strong) NSMutableArray <NSString *> *lines;
 /** 是当前选中的文本 */
@@ -34,7 +35,7 @@
 
 ![源码图片一份，方便查看](http://upload-images.jianshu.io/upload_images/459563-eb2c20a81e60ee46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-```
+```objc
     //headerDict存放文本中所有的头文件
     NSMutableDictionary <NSString*, NSNumber *>*headerDict = [NSMutableDictionary dictionary];
     //willCheckDict存放将要删除的头文件
