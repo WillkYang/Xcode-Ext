@@ -1,19 +1,21 @@
 >Xcode8开放了新的一个Extension：Xcode Source Editor Extension，目的是让开发者可以正规的自主为IDE编写插件，虽然说系统现提供的功能还比较拮据，但是不妨碍我们了解和使用，本文主要介绍Xcode Source Editor Extension的功能，并演示一个简单的插件的实现～
 
 ###### 一、实现功能
-1.删除无用的类头文件，要求类名和文件名一致
-2.删除重复导入的头文件，只保留一个
+1、删除无用的类头文件，要求类名和文件名一致
+
+2、删除重复导入的头文件，只保留一个
 
 ###### 二、编写代码
-1.新建项目，然后新建一个Target，类型选择Xcode Source Editor Extension，完成之后设置target的签名和项目的签名一致。
+
+1、新建项目，然后新建一个Target，类型选择Xcode Source Editor Extension，完成之后设置target的签名和项目的签名一致。
 ![在New中选择Target](http://upload-images.jianshu.io/upload_images/459563-6bad7552f26e7442.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-2.在info.plist中可以修改插件显示名称Bundle name和其它对Extension的设置。
+2、在info.plist中可以修改插件显示名称Bundle name和其它对Extension的设置。
 
 ![插件的info.plist](http://upload-images.jianshu.io/upload_images/459563-d97284d68d580069.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-3.系统默认为我们生成SourceEditorCommand文件，此处我们也可以在info里边修改配置项，类似于项目中系统生成的Main.storyboard。插件的重点基本在：
+3、系统默认为我们生成SourceEditorCommand文件，此处我们也可以在info里边修改配置项，类似于项目中系统生成的Main.storyboard。插件的重点基本在：
  ```
 - (void)performCommandWithInvocation:(XCSourceEditorCommandInvocation *)invocation completionHandler:(void (^)(NSError * _Nullable nilOrError))completionHandler
 ```
@@ -93,23 +95,23 @@
 
 ##### 三、测试结果
 
-1.运行，选择Xcode8
+1、运行，选择Xcode8
 
 ![command+r运行插件](http://upload-images.jianshu.io/upload_images/459563-34347f0d276c2e55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-2.可以看见灰色的Xcode实例。随便选择一个项目打开
+2、可以看见灰色的Xcode实例。随便选择一个项目打开
 
 ![测试的Xcode，用于区别正式的Xcode](http://upload-images.jianshu.io/upload_images/459563-5a4e6c5afb7641ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-3.测试。测试文件中含有未使用的头文件和冗余的头文件
+3、测试。测试文件中含有未使用的头文件和冗余的头文件
 
 ![处理前代码](http://upload-images.jianshu.io/upload_images/459563-9850d7c6a1352711.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-4.Editor中选择插件运行
+4、Editor中选择插件运行
 
 ![不出意外Editor菜单最底下一栏，此处名字可以在info.plist修改](http://upload-images.jianshu.io/upload_images/459563-d1c732c5ecc548e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-5.检验运行结果
+5、检验运行结果
 
 ![处理后代码](http://upload-images.jianshu.io/upload_images/459563-64f96edc2777c200.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
